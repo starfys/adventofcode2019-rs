@@ -27,3 +27,22 @@ fn main() {
     println!("Part 1: {}", part_1);
     println!("Part 2: {}", part_2);
 }
+
+#[cfg(test)]
+mod test {
+    use crate::{fuel, fuel_r};
+
+    #[test]
+    fn test_fuel() {
+        assert_eq!(fuel(12), 2);
+        assert_eq!(fuel(14), 2);
+        assert_eq!(fuel(1969), 654);
+        assert_eq!(fuel(100756), 33583);
+    }
+    #[test]
+    fn test_fuel_r() {
+        assert_eq!(fuel_r(14), 2);
+        assert_eq!(fuel_r(1969), 966);
+        assert_eq!(fuel_r(100756), 50346);
+    }
+}
