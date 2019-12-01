@@ -1,14 +1,14 @@
 use std::io::{self, BufRead};
 
 fn fuel(mass: i64) -> i64 {
-    return (mass / 3 - 2).max(0);
+    mass / 3 - 2
 }
 
 fn fuel_r(mass: i64) -> i64 {
     if mass <= 0 {
-        return 0;
+        0
     } else {
-        return fuel(mass) + fuel_r(fuel(mass));
+        fuel(mass) + fuel_r(fuel(mass))
     }
 }
 
