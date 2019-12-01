@@ -1,7 +1,7 @@
 use std::io::{self, BufRead};
 
 fn fuel(mass: i64) -> i64 {
-    mass / 3 - 2
+    (mass / 3 - 2).max(0)
 }
 
 fn fuel_r(mass: i64) -> i64 {
