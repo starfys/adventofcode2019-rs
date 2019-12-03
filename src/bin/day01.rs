@@ -12,7 +12,6 @@ fn fuel_r(mass: i64) -> i64 {
     }
 }
 
-
 fn main() {
     let stdin = io::stdin();
     let (part_1, part_2) = stdin
