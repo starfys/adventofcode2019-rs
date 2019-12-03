@@ -18,7 +18,7 @@ fn walk_board<'a>(instructions: impl Iterator<Item = &'a str>) -> HashMap<(isize
         let direction = instruction.next().unwrap();
         let magnitude: usize = instruction.collect::<String>().parse().unwrap();
         // Walk in the direction
-        for _ in 0..magnitude {
+        for _ in 0..magnitude*1000 {
             // Update once in desired direction
             match direction {
                 'L' => x -= 1,
@@ -41,11 +41,6 @@ struct HashMapIntersection<'a, T, U, V> {
 }
 impl<'a, T, U, V> HashMapIntersection<'a, T, U, V> {
     fn new(lhs: &'a HashMap<T, U>, rhs: &'a HashMap<T, V>) -> Self {
-        // Swap lhs based on what size lhs and rhs are
-        /*let (lhs, rhs) = match lhs.len().cmp(&rhs.len()) {
-            Ordering::Less | Ordering::Equal => (lhs, rhs),
-            Ordering::Greater => (rhs, lhs)
-        };*/
         HashMapIntersection {
             lhs,
             rhs: rhs.iter(),
@@ -74,7 +69,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let wire_1_visited = walk_board(lines[0].split(","));
     let wire_2_visited = walk_board(lines[1].split(","));
-
+    
     // Get the intersection of points visited
     let both_visited: Vec<_> = HashMapIntersection::new(&wire_1_visited, &wire_2_visited).collect();
     
