@@ -18,7 +18,7 @@ fn walk_board<'a>(instructions: impl Iterator<Item = &'a str>) -> HashMap<(isize
         let direction = instruction.next().unwrap();
         let magnitude: usize = instruction.collect::<String>().parse().unwrap();
         // Walk in the direction
-        for _ in 0..magnitude*1000 {
+        for _ in 0..magnitude {
             // Update once in desired direction
             match direction {
                 'L' => x -= 1,
