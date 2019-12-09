@@ -27,10 +27,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("Part 1: {}", n1 * n2);
 
     let image = layers
-        .iter()
+        .into_iter()
         .rev()
         .fold(['2'; WIDTH * HEIGHT], |mut image, layer| {
-            for (i_pix, l_pix) in image.iter_mut().zip(layer.iter()) {
+            for (i_pix, l_pix) in image.iter_mut().zip(layer) {
                 if *l_pix != '2' {
                     *i_pix = *l_pix
                 }
