@@ -1,5 +1,5 @@
-use std::io::{self, BufRead};
 use adventofcode2019_rs::intcode::IntCode;
+use std::io::{self, BufRead};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let stdin = io::stdin();
@@ -9,11 +9,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let mut p1_program: IntCode = line.parse()?;
     let mut p2_program = p1_program.clone();
-    
+
     let inputs = vec![1];
     p1_program.add_inputs(inputs.into_iter());
     println!("Part 1: {}", p1_program.last().unwrap());
-    
+
     let inputs = vec![2];
     p2_program.add_inputs(inputs.into_iter());
     println!("Part 2: {}", p2_program.last().unwrap());

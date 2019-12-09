@@ -22,19 +22,22 @@ fn amplify(program: &IntCode, phases: &[&isize]) -> Option<isize> {
             amp.add_inputs(inputs.into_iter());
             if let Some(output) = amp.next() {
                 last_output = output;
-            }
-            else {
-                return Some(last_output)
+            } else {
+                return Some(last_output);
             }
         }
     }
 }
 
 fn best_permutation<'a>(program: &IntCode, phases: &'a [isize]) -> Option<(isize, Vec<&'a isize>)> {
-    phases.iter().permutations(5).map(|permutation| {
-        let output = amplify(program, permutation.as_slice()).unwrap();
-        (output, permutation)
-    }).max()
+    phases
+        .iter()
+        .permutations(5)
+        .map(|permutation| {
+            let output = amplify(program, permutation.as_slice()).unwrap();
+            (output, permutation)
+        })
+        .max()
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -44,11 +47,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let line = line.trim_end();
 
     let program: IntCode = line.parse()?;
-    let part_1 = best_permutation(&program, &[0,1,2,3,4]).unwrap();
+    let part_1 = best_permutation(&program, &[0, 1, 2, 3, 4]).unwrap();
     println!("Part 1: {}", part_1.0);
-    let part_2 = best_permutation(&program, &[5,6,7,8,9]).unwrap();
+    let part_2 = best_permutation(&program, &[5, 6, 7, 8, 9]).unwrap();
     println!("Part 2: {}", part_2.0);
 
     Ok(())
-
 }

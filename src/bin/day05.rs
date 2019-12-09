@@ -14,10 +14,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let inputs = vec![1];
     p1_program.add_inputs(inputs.into_iter());
     println!("Part 1: {}", p1_program.last().unwrap());
-    
+
     let inputs = vec![5];
     p2_program.add_inputs(inputs.into_iter());
     println!("Part 2: {}", p2_program.last().unwrap());
     Ok(())
-
 }

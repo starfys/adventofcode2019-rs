@@ -1,6 +1,6 @@
 use std::collections::{hash_map, HashMap};
 use std::hash::Hash;
-use std::io::{self, BufRead,};
+use std::io::{self, BufRead};
 
 fn walk_board<'a>(instructions: impl Iterator<Item = &'a str>) -> HashMap<(isize, isize), usize> {
     // Current coordinates
@@ -69,17 +69,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let wire_1_visited = walk_board(lines[0].split(","));
     let wire_2_visited = walk_board(lines[1].split(","));
-    
+
     // Get the intersection of points visited
     let both_visited: Vec<_> = HashMapIntersection::new(&wire_1_visited, &wire_2_visited).collect();
-    
+
     let part_1_answer = both_visited
         .iter()
         .map(|((x, y), _)| x.abs() + y.abs())
         .min()
         .unwrap();
     println!("Part 1: {:?}", part_1_answer);
-    
+
     let part_2_answer = both_visited
         .iter()
         .map(|(_, (s1, s2))| *s1 + *s2)
