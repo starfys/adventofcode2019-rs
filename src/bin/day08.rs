@@ -9,8 +9,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .lock()
         .lines()
         .next()
-        .unwrap()
-        .unwrap()
+        .unwrap()?
         .chars()
         .collect();
 
