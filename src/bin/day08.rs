@@ -5,13 +5,7 @@ const HEIGHT: usize = 6;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let stdin = io::stdin();
-    let input: Vec<char> = stdin
-        .lock()
-        .lines()
-        .next()
-        .unwrap()?
-        .chars()
-        .collect();
+    let input: Vec<char> = stdin.lock().lines().next().unwrap()?.chars().collect();
 
     // Split input into layers
     let layers: Vec<_> = input.chunks(WIDTH * HEIGHT).collect();

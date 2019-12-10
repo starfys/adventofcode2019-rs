@@ -1,13 +1,22 @@
-use std::io::{self, BufRead};
 use std::collections::{HashMap, HashSet, VecDeque};
+use std::io::{self, BufRead};
 
 fn num_orbiting(orbit_map: &HashMap<String, String>, name: &str) -> usize {
-    orbit_map.get(name).map(|planet| 1 + num_orbiting(&orbit_map, planet)).unwrap_or(0)
+    orbit_map
+        .get(name)
+        .map(|planet| 1 + num_orbiting(&orbit_map, planet))
+        .unwrap_or(0)
 }
 fn bfs_distance(orbit_map: &HashMap<String, String>, source: &str, dest: &str) -> usize {
-    let mut connected_map: HashMap<String, Vec<String>> = orbit_map.iter().map(|(k, v)| (k.to_string(), vec![v.to_string()])).collect();
+    let mut connected_map: HashMap<String, Vec<String>> = orbit_map
+        .iter()
+        .map(|(k, v)| (k.to_string(), vec![v.to_string()]))
+        .collect();
     for (k, v) in orbit_map {
-        connected_map.entry(v.to_string()).and_modify(|c| c.push(k.to_string())).or_insert(vec![k.to_string()]);
+        connected_map
+            .entry(v.to_string())
+            .and_modify(|c| c.push(k.to_string()))
+            .or_insert(vec![k.to_string()]);
     }
 
     let mut unvisited = VecDeque::new();
@@ -47,8 +56,13 @@ fn main() {
             (earth, sun)
         })
         .collect();
-    println!("Part 1: {}", orbit_map.keys().map(|planet| num_orbiting(&orbit_map, planet)).sum::<usize>());
-    //println!("Part 2: {}", bfs_distance(&orbit_map, "YOU", "SAN") - 2) 
-    println!("Part 2: {}", bfs_distance(&orbit_map, "YOU", "SAN") - 2) 
+    println!(
+        "Part 1: {}",
+        orbit_map
+            .keys()
+            .map(|planet| num_orbiting(&orbit_map, planet))
+            .sum::<usize>()
+    );
+    //println!("Part 2: {}", bfs_distance(&orbit_map, "YOU", "SAN") - 2)
+    println!("Part 2: {}", bfs_distance(&orbit_map, "YOU", "SAN") - 2)
 }
-
